@@ -1,20 +1,12 @@
-package de.janheyd.propertyverifier;
+package de.janheyd.propertyverifier.feature;
 
 import java.util.List;
 import java.util.function.Function;
 
-import static java.util.Arrays.asList;
+public class ToStringFeature<T, U> implements ObjectFeature<T, U> {
 
-public class ToStringPropertyVerifier<T, U> {
-
-	private final Function<U, T> constructor;
-
-	public ToStringPropertyVerifier(Function<U, T> constructor) {
-		this.constructor = constructor;
-	}
-
-	public void verify(U value1, U value2) {
-		List<U> values = asList(value1, value2);
+	@Override
+	public void verify(Function<U, T> constructor, List<U> values) {
 		if (!(sameValueProducesSameToString(constructor, values)
 				&& differentValuesProduceDifferentToString(constructor, values)))
 			throw new RuntimeException("Constructor <=> ToString verification failed");
@@ -32,4 +24,5 @@ public class ToStringPropertyVerifier<T, U> {
 				.distinct().count();
 		return uniqueToStringValues == values.size();
 	}
+
 }

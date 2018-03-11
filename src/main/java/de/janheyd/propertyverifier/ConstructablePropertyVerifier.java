@@ -1,6 +1,10 @@
 package de.janheyd.propertyverifier;
 
+import de.janheyd.propertyverifier.feature.ToStringFeature;
+
 import java.util.function.Function;
+
+import static java.util.Arrays.asList;
 
 public class ConstructablePropertyVerifier<T, U> {
 
@@ -14,7 +18,7 @@ public class ConstructablePropertyVerifier<T, U> {
 		return new VerifiablePropertyVerifier<>(constructor, getter);
 	}
 
-	public ToStringPropertyVerifier<T, U> withToString() {
-		return new ToStringPropertyVerifier<>(constructor);
+	public VerifiablePropertyVerifier<T, U> withToString() {
+		return new VerifiablePropertyVerifier<T, U>(constructor, asList(new ToStringFeature<>()));
 	}
 }
