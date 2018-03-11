@@ -14,4 +14,7 @@ public class ConstructablePropertyVerifier<T, U> {
 		return new VerifiablePropertyVerifier<>(constructor, getter);
 	}
 
+	public ToStringPropertyVerifier<T, U> withToString() {
+		return new ToStringPropertyVerifier<>(constructor);
+	}
 }
