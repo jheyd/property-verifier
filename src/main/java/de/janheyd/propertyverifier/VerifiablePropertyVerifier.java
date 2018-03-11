@@ -2,22 +2,25 @@ package de.janheyd.propertyverifier;
 
 import de.janheyd.propertyverifier.feature.GetterFeature;
 import de.janheyd.propertyverifier.feature.ObjectFeature;
+import de.janheyd.propertyverifier.feature.ToStringFeature;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 
 public class VerifiablePropertyVerifier<T, U> {
 
 	private final Function<U, T> constructor;
 	private List<ObjectFeature<T, U>> features;
 
-	public VerifiablePropertyVerifier(Function<U, T> constructor, Function<T, U> getter) {
-		this(constructor, asList(new GetterFeature<>(getter)));
+	public VerifiablePropertyVerifier(Function<U, T> constructor) {
+		this(constructor, emptyList());
 	}
 
-	public VerifiablePropertyVerifier(Function<U, T> constructor, List<ObjectFeature<T, U>> features) {
+	private VerifiablePropertyVerifier(Function<U, T> constructor, List<ObjectFeature<T, U>> features) {
 		this.constructor = constructor;
 		this.features = features;
 	}
@@ -27,4 +30,15 @@ public class VerifiablePropertyVerifier<T, U> {
 		features.forEach(feature -> feature.verify(constructor, values));
 	}
 
+	public VerifiablePropertyVerifier<T, U> withToString() {
+		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
+		features.add(new ToStringFeature<>());
+		return new VerifiablePropertyVerifier<>(constructor, features);
+	}
+
+	public VerifiablePropertyVerifier<T, U> withGetter(Function<T, U> getter) {
+		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
+		features.add(new GetterFeature<>(getter));
+		return new VerifiablePropertyVerifier<>(constructor, features);
+	}
 }
