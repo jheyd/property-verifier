@@ -15,6 +15,10 @@ public class ConstructablePropertyVerifier<T, U> {
 	}
 
 	public VerifiablePropertyVerifier<T, U> withToString() {
-		return new VerifiablePropertyVerifier<T, U>(constructor).withToString();
+		return new VerifiablePropertyVerifier<>(constructor).withToString();
+	}
+
+	public VerifiablePropertyVerifier<T, U> withEquals() {
+		return new VerifiablePropertyVerifier<>(constructor).withEquals();
 	}
 }

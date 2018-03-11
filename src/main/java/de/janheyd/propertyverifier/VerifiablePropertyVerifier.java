@@ -1,5 +1,6 @@
 package de.janheyd.propertyverifier;
 
+import de.janheyd.propertyverifier.feature.EqualsFeature;
 import de.janheyd.propertyverifier.feature.GetterFeature;
 import de.janheyd.propertyverifier.feature.ObjectFeature;
 import de.janheyd.propertyverifier.feature.ToStringFeature;
@@ -40,5 +41,12 @@ public class VerifiablePropertyVerifier<T, U> {
 		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
 		features.add(new GetterFeature<>(getter));
 		return new VerifiablePropertyVerifier<>(constructor, features);
+	}
+
+	public VerifiablePropertyVerifier<T,U> withEquals() {
+		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
+		features.add(new EqualsFeature<>());
+		return new VerifiablePropertyVerifier<>(constructor, features);
+
 	}
 }
