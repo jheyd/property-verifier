@@ -50,7 +50,22 @@ public class EqualsTest {
 				.verify(0, 1);
 	}
 
+	@Test
+	public void canDetectInconsistentEquals() throws Exception {
+		expected.expect(AssertionError.class);
+		expected.expectMessage(equalTo(
+				"Equals verification failed (equal property values should produce equal objects):\n"
+						+ "object with property value 1 is not equal to another object with same property value"
+		));
+
+		new PropertyVerifier()
+				.withConstructor(HasInconsistentEquals::new)
+				.withEquals()
+				.verify(0, 1);
+	}
+
 	private class HasGoodEquals {
+
 		private int x;
 
 		public HasGoodEquals(int x) {
@@ -78,6 +93,20 @@ public class EqualsTest {
 	private class HasDefaultEquals {
 
 		public HasDefaultEquals(int x) {
+		}
+	}
+
+	private class HasInconsistentEquals {
+
+		private int x;
+
+		public HasInconsistentEquals(int x) {
+			this.x = x;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			return x == 0;
 		}
 	}
 }
