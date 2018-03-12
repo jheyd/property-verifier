@@ -21,4 +21,8 @@ public class ConstructablePropertyVerifier<T, U> {
 	public VerifiablePropertyVerifier<T, U> withEquals() {
 		return new VerifiablePropertyVerifier<>(constructor).withEquals();
 	}
+
+	public VerifiablePropertyVerifier<T, U> withHashCode() {
+		return new VerifiablePropertyVerifier<>(constructor).withHashCode();
+	}
 }

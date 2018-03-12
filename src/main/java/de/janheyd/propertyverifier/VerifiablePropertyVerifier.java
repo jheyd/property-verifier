@@ -2,6 +2,7 @@ package de.janheyd.propertyverifier;
 
 import de.janheyd.propertyverifier.feature.EqualsFeature;
 import de.janheyd.propertyverifier.feature.GetterFeature;
+import de.janheyd.propertyverifier.feature.HashCodeFeature;
 import de.janheyd.propertyverifier.feature.ObjectFeature;
 import de.janheyd.propertyverifier.feature.ToStringFeature;
 
@@ -47,6 +48,11 @@ public class VerifiablePropertyVerifier<T, U> {
 		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
 		features.add(new EqualsFeature<>());
 		return new VerifiablePropertyVerifier<>(constructor, features);
+	}
 
+	public VerifiablePropertyVerifier<T, U> withHashCode() {
+		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
+		features.add(new HashCodeFeature<>());
+		return new VerifiablePropertyVerifier<>(constructor, features);
 	}
 }
