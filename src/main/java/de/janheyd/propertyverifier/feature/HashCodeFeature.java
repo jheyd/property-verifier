@@ -18,9 +18,9 @@ public class HashCodeFeature<T, U> implements ObjectFeature<T, U> {
 	@Override
 	public void verify(Function<U, T> constructor, List<U> values) {
 		if(!equalValuesHaveEqualHashCode(constructor, values))
-			throw new RuntimeException("HashCode verification failed");
+			throw new AssertionError("HashCode verification failed");
 		if(guaranteedDistinct && distinctValuesProduceSameHashCode(constructor, values))
-			throw new RuntimeException("HashCode verification failed");
+			throw new AssertionError("HashCode verification failed");
 
 	}
 

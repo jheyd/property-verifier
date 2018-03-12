@@ -9,7 +9,7 @@ public class ToStringFeature<T, U> implements ObjectFeature<T, U> {
 	public void verify(Function<U, T> constructor, List<U> values) {
 		if (!(sameValueProducesSameToString(constructor, values)
 				&& differentValuesProduceDifferentToString(constructor, values)))
-			throw new RuntimeException("Constructor <=> ToString verification failed");
+			throw new AssertionError("Constructor <=> ToString verification failed");
 	}
 
 	private boolean sameValueProducesSameToString(Function<U, T> constructor, List<U> values) {

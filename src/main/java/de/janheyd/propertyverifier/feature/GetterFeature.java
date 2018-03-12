@@ -14,6 +14,6 @@ public class GetterFeature<T, U> implements ObjectFeature<T, U> {
 	@Override
 	public void verify(Function<U, T> constructor, List<U> values) {
 		if(!values.stream().allMatch(value -> constructor.andThen(getter).apply(value).equals(value)))
-			throw new RuntimeException("Constructor <=> Getter verification failed");
+			throw new AssertionError("Constructor <=> Getter verification failed");
 	}
 }

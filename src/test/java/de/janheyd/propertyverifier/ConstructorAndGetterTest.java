@@ -12,7 +12,7 @@ public class ConstructorAndGetterTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void canDetectIncorrectGetter() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasConstantGetter::new)

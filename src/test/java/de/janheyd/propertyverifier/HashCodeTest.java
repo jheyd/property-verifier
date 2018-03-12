@@ -12,7 +12,7 @@ public class HashCodeTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void detectDistinctHashCodeForEqualObjects() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasDefaultHashCode::new)
@@ -20,7 +20,7 @@ public class HashCodeTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void detectEqualHashCodeForGuaranteedDistinctObjects() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasConstantHashCode::new)

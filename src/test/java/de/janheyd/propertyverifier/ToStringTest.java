@@ -12,7 +12,7 @@ public class ToStringTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void canDetectConstantToString() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasConstantToString::new)
@@ -20,7 +20,7 @@ public class ToStringTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void canDetectDefaultToString() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasDefaultToString::new)

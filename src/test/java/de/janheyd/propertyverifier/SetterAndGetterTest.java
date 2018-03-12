@@ -12,7 +12,7 @@ public class SetterAndGetterTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void canDetectConstantGetter() throws Exception {
 		new PropertyVerifier()
 				.withSetter(HasConstantGetter::setX, HasConstantGetter::new)

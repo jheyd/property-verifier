@@ -27,7 +27,7 @@ public class EqualsFeature<T, U> implements ObjectFeature<T, U> {
 			String details = equalPairs(constructor, values).entrySet().stream()
 					.map(entry -> String.format(template, entry.getKey(), entry.getValue()))
 					.collect(joining("\n"));
-			throw new RuntimeException(header + details);
+			throw new AssertionError(header + details);
 		}
 	}
 
@@ -55,7 +55,7 @@ public class EqualsFeature<T, U> implements ObjectFeature<T, U> {
 			String details = failedValues.stream()
 					.map(value -> String.format(template, value))
 					.collect(joining("\n"));
-			throw new RuntimeException(header + details);
+			throw new AssertionError(header + details);
 		}
 	}
 

@@ -12,7 +12,7 @@ public class EqualsTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void canDetectConstantEquals() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasBadEquals::new)
@@ -20,7 +20,7 @@ public class EqualsTest {
 				.verify(0, 1);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = AssertionError.class)
 	public void canDetectDefaultEquals() throws Exception {
 		new PropertyVerifier()
 				.withConstructor(HasDefaultEquals::new)

@@ -15,7 +15,7 @@ public class EqualsFeatureShould {
 
 	@Test
 	public void produceErrorMessageForEqualPropertyProducesDistinctObjects() {
-		expected.expect(RuntimeException.class);
+		expected.expect(AssertionError.class);
 		expected.expectMessage(equalTo(
 				"Equals verification failed (equal property values should produce equal objects):\n"
 						+ "object with property value 0 is not equal to another object with same property value\n"
@@ -27,7 +27,7 @@ public class EqualsFeatureShould {
 
 	@Test
 	public void produceErrorMessageForDistinctPropertiesProduceEqualObjects() {
-		expected.expect(RuntimeException.class);
+		expected.expect(AssertionError.class);
 		expected.expectMessage(equalTo(
 				"Equals verification failed (distinct property values should not produce equal objects):\n"
 						+ "object for property value 0 is equal to object for property values [1]\n"
