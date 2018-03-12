@@ -55,4 +55,10 @@ public class VerifiablePropertyVerifier<T, U> {
 		features.add(new HashCodeFeature<>());
 		return new VerifiablePropertyVerifier<>(constructor, features);
 	}
+
+	public VerifiablePropertyVerifier<T, U> withHashCodeDistinct() {
+		List<ObjectFeature<T, U>> features = new ArrayList<>(this.features);
+		features.add(new HashCodeFeature<>(true));
+		return new VerifiablePropertyVerifier<>(constructor, features);
+	}
 }

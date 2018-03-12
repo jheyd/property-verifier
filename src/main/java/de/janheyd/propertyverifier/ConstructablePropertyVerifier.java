@@ -25,4 +25,8 @@ public class ConstructablePropertyVerifier<T, U> {
 	public VerifiablePropertyVerifier<T, U> withHashCode() {
 		return new VerifiablePropertyVerifier<>(constructor).withHashCode();
 	}
+
+	public VerifiablePropertyVerifier<T, U> withHashCodeDistinct() {
+		return new VerifiablePropertyVerifier<>(constructor).withHashCodeDistinct();
+	}
 }
